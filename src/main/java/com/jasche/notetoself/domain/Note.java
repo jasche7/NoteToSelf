@@ -21,6 +21,7 @@ public class Note {
     @GeneratedValue
     private Long id;
     private Instant dateCreated;
+    private String author;
     private String title;
     private String text;
 
