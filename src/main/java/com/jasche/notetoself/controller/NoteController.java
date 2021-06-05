@@ -4,6 +4,7 @@ import com.jasche.notetoself.domain.Note;
 import com.jasche.notetoself.repository.NoteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Instant;
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -34,6 +36,13 @@ class NoteController {
     @GetMapping("/notes")
     public Collection<Note> notes() {
         return noteRepository.findAll();
+    }
+
+    @GetMapping("/notes/{id}")
+    public ResponseEntity<Note> getNote(@PathVariable Long id) {
+        Optional<Note> note = noteRepository.findById(id);
+        return note.map(response -> ResponseEntity.ok().body(response))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/notes")
