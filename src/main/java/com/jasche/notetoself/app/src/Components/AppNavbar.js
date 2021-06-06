@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const AppNavbar = (props) => {
+const AppNavbar = () => {
   const [isOpen, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!isOpen);
