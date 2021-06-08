@@ -23,7 +23,7 @@ const NoteEdit = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await fetch("/api/notes" + (entry.id ? "/" + entry.id : ""), {
+    await fetch("/api/note" + (entry.id ? "/" + entry.id : ""), {
       method: entry.id ? "PUT" : "POST",
       headers: {
         Accept: "application/json",
@@ -37,7 +37,7 @@ const NoteEdit = (props) => {
   useEffect(() => {
     const makeNote = async () => {
       const note = await (
-        await fetch(`/api/notes/${props.match.params.id}`)
+        await fetch(`/api/note/${props.match.params.id}`)
       ).json();
       setEntry(note);
     };

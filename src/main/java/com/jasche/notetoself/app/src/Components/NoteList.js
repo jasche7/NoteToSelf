@@ -18,7 +18,7 @@ const NoteList = () => {
   }, []);
 
   const remove = async (id) => {
-    await fetch(`/api/notes/${id}`, {
+    await fetch(`/api/note/${id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
