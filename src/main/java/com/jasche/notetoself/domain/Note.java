@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,10 +23,9 @@ public class Note {
     @GeneratedValue
     private Long id;
     private Instant dateCreated;
-    private String author;
     private String title;
     private String text;
-    @OneToOne
+    @OneToOne(cascade= CascadeType.PERSIST)
     private User user;
 
 }
