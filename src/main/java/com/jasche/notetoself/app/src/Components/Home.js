@@ -6,7 +6,6 @@ import { Button, Container } from "reactstrap";
 import { withCookies } from "react-cookie";
 
 const Home = (props) => {
-  const [isLoading, setLoading] = useState(true);
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [user, setUser] = useState(undefined);
   const { cookies } = props;

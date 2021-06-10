@@ -1,29 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Button, ButtonGroup, Container, Table } from "reactstrap";
 import AppNavbar from "./AppNavbar";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { instanceOf } from "prop-types";
+import { withCookies, Cookies } from "react-cookie";
 
-const NoteList = () => {
+const NoteList = (props) => {
   const [notes, setNotes] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const { cookies } = props;
+  const [csrfToken] = useState(cookies.get("XSRF-TOKEN"));
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/notes")
-      .then((response) => response.json())
+    fetch("/api/notes", { credentials: "include" })
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
         setNotes(data);
         setLoading(false);
-      });
-  }, []);
+      })
+      .catch(() => props.history.push("/"));
+  }, [props.history]);
 
   const remove = async (id) => {
     await fetch(`/api/note/${id}`, {
       method: "DELETE",
       headers: {
+        "X-XSRF-TOKEN": csrfToken,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      credentials: "include",
     }).then(() => {
       let updatedNotes = [...notes].filter((i) => i.id !== id);
       setNotes(updatedNotes);
@@ -34,7 +43,6 @@ const NoteList = () => {
     return (
       <tr key={note.id}>
         <td style={{ whiteSpace: "nowrap" }}>{note.title}</td>
-        <td>{note.author}</td>
         <td>{note.text}</td>
         <td>
           <ButtonGroup>
@@ -42,7 +50,7 @@ const NoteList = () => {
               size="sm"
               color="primary"
               tag={Link}
-              to={"/notes/" + note.id}
+              to={"/note/" + note.id}
             >
               Edit
             </Button>
@@ -63,7 +71,7 @@ const NoteList = () => {
         <AppNavbar />
         <Container fluid>
           <div className="float-right">
-            <Button color="success" tag={Link} to="/notes/new">
+            <Button color="success" tag={Link} to="/note/new">
               Add Note
             </Button>
           </div>
@@ -72,7 +80,6 @@ const NoteList = () => {
             <thead>
               <tr>
                 <th width="20%">Title</th>
-                <th width="20%">Author</th>
                 <th>Text</th>
                 <th width="10%">Actions</th>
               </tr>
@@ -84,4 +91,8 @@ const NoteList = () => {
     );
 };
 
-export default NoteList;
+NoteList.propTypes = {
+  cookies: instanceOf(Cookies).isRequired,
+};
+
+export default withCookies(withRouter(NoteList));
