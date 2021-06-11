@@ -18,7 +18,6 @@ class Initializer implements CommandLineRunner {
 
     public void run(String... strings) {
         Note note = Note.builder().dateCreated(Instant.now())
-                .author("testuser")
                 .title("Test Note")
                 .text("Test Note Contents")
                 .build();
