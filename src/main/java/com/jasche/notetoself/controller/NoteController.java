@@ -30,7 +30,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-class NoteController {
+public class NoteController {
 
     private final Logger log = LoggerFactory.getLogger(NoteController.class);
     private final NoteRepository noteRepository;
