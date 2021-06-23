@@ -4,8 +4,10 @@ import com.jasche.notetoself.domain.Note;
 import com.jasche.notetoself.domain.User;
 import com.jasche.notetoself.repository.NoteRepository;
 import com.jasche.notetoself.repository.UserRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,8 +39,8 @@ class NoteControllerTest {
     @MockBean
     private UserRepository userRepository;
 
-    @Test
-    void shouldGetAllNotes() throws Exception {
+    @BeforeAll
+    static void init(@Autowired NoteRepository noteRepository){
         User user = new User("1", "testUser");
         Note note = Note.builder().dateCreated(Instant.now())
                 .title("Test Note")
@@ -46,17 +48,16 @@ class NoteControllerTest {
                 .user(user)
                 .build();
         noteRepository.save(note);
+    }
 
+    @Test
+    void shouldGetAllNotes() throws Exception {
+        Mockito.when(principal.getName()).thenReturn("1");
         mockMvc.perform(get("/api/notes").principal(principal)).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Test Note")));
     }
 
     @Test
     void shouldGetSpecificNote() throws Exception {
-        Note note = Note.builder().dateCreated(Instant.now())
-                .title("Test Note")
-                .text("Test Note Contents")
-                .build();
-        noteRepository.save(note);
         mockMvc.perform(get("/api/note/1")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("Test Note")));
     }
 
