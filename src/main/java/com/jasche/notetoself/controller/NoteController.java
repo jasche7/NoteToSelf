@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Rest controller for http requests related to Notes.
+ * Rest controller for HTTP requests related to Notes.
  */
 @RestController
 @RequestMapping("/api")
