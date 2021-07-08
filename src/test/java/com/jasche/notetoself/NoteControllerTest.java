@@ -14,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.security.Principal;
@@ -102,6 +101,5 @@ class NoteControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(not(containsString("Test Note"))));
-
     }
 }
