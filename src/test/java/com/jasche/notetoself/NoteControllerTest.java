@@ -40,9 +40,6 @@ class NoteControllerTest {
     @Mock
     private Principal principal;
 
-    @Mock
-    private OAuth2User oAuth2User;
-
     @Autowired
     private NoteRepository noteRepository;
 
