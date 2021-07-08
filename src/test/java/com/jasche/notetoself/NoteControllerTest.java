@@ -21,6 +21,8 @@ import java.security.Principal;
 import java.time.Instant;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -87,5 +89,19 @@ class NoteControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("New Test Note")));
+    }
+
+    @Test
+    void shouldDeleteNote() throws Exception {
+        Mockito.when(principal.getName()).thenReturn("1");
+        mockMvc.perform(delete("/api/note/1"))
+                .andDo(print())
+                .andExpect(status().isOk());
+        mockMvc.perform(get("/api/notes")
+                .principal(principal))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(not(containsString("Test Note"))));
+
     }
 }
