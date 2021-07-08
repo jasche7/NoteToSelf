@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,9 +19,6 @@ class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Mock
-    private OidcIdToken idToken;
 
     @Test
     void shouldGetCurrentNullUser() throws Exception {
