@@ -52,20 +52,19 @@ const Home = (props) => {
           response.idToken +
           "&post_logout_redirect_uri=" +
           window.location.origin;
-        console.log("This is here: " + window.location.href);
       });
   };
 
   const message = user ? (
     <h2>Welcome, {user.name}!</h2>
   ) : (
-    <p>Please log in to manage your JUG Tour.</p>
+    <p>Please log in to manage your notes.</p>
   );
 
   const button = isAuthenticated ? (
     <div>
       <Button color="link">
-        <Link to="/notes">Manage JUG Tour</Link>
+        <Link to="/notes">Manage Notes</Link>
       </Button>
       <br />
       <Button color="link" onClick={logout}>
