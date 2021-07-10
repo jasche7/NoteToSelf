@@ -61,7 +61,6 @@ const NoteEdit = (props) => {
 
   return (
     <div>
-      <AppNavbar />
       <Container>
         {title}
         <Form onSubmit={(e) => handleSubmit(e)}>

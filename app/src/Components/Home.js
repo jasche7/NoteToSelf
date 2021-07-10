@@ -79,7 +79,6 @@ const Home = (props) => {
 
   return (
     <div>
-      <AppNavbar />
       <Container fluid>
         {message}
         {button}

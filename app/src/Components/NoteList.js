@@ -68,7 +68,6 @@ const NoteList = (props) => {
   } else
     return (
       <div>
-        <AppNavbar />
         <Container fluid>
           <div className="float-right">
             <Button color="success" tag={Link} to="/note/new">

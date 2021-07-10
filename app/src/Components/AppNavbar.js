@@ -1,19 +1,17 @@
-import { useState } from "react";
-import { Navbar, NavbarBrand, NavbarToggler } from "reactstrap";
+import { Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const AppNavbar = () => {
-  const [isOpen, setOpen] = useState(false);
-  const toggle = () => {
-    setOpen(!isOpen);
-  };
-
   return (
     <Navbar color="dark" dark expand="md">
       <NavbarBrand tag={Link} to="/">
         Home
       </NavbarBrand>
-      <NavbarToggler onClick={toggle} />
+      <Nav className="ml-auto" navbar>
+        <NavItem>
+          <NavLink href="https://github.com/jasche7/NoteToSelf">GitHub</NavLink>
+        </NavItem>
+      </Nav>
     </Navbar>
   );
 };
