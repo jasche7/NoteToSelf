@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { Cookies, withCookies } from "react-cookie";
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
-import AppNavbar from "./AppNavbar";
 
 const NoteEdit = (props) => {
   const emptyEntry = {

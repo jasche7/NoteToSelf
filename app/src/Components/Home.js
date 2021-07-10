@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "../App.css";
-import AppNavbar from "./AppNavbar";
 import { Link } from "react-router-dom";
 import { Button, Container } from "reactstrap";
 import { withCookies } from "react-cookie";

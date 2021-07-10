@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button, ButtonGroup, Container, Table } from "reactstrap";
-import AppNavbar from "./AppNavbar";
 import { Link, withRouter } from "react-router-dom";
 import { instanceOf } from "prop-types";
 import { withCookies, Cookies } from "react-cookie";
