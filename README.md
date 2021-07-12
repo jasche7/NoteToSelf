@@ -17,6 +17,9 @@ Improve UI.
 
 ## Project Screenshot(s)
 
+Screen Shot 2021-07-11 at 5.54.50 PM<img width="1280" alt="image" src="https://user-images.githubusercontent.com/25709225/125215840-5e86b380-e271-11eb-895e-bb48934b2579.png">
+
+
 ## Reflection
 
 This project was imagined as a tool for me to easily copy and paste text between devices in a persistent yet secure manner. Email drafts provide a similar function but end up cluttering, which is not ideal.
