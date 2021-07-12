@@ -17,7 +17,12 @@ Improve UI.
 
 ## Project Screenshot(s)
 
-Screen Shot 2021-07-11 at 5.54.50 PM<img width="1280" alt="image" src="https://user-images.githubusercontent.com/25709225/125215840-5e86b380-e271-11eb-895e-bb48934b2579.png">
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/25709225/125215840-5e86b380-e271-11eb-895e-bb48934b2579.png">
+
+## Usage
+
+In root directory, run:
+./mvnw spring-boot:run -e -Pprod
 
 
 ## Reflection
