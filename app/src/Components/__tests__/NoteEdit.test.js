@@ -30,5 +30,7 @@ describe(`The NoteEdit component`, () => {
         <NoteEdit />
       </StaticRouter>
     );
+
+    expect(getByText("Cancel").closest("a")).toHaveAttribute("href", "/notes");
   });
 });
