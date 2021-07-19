@@ -62,7 +62,7 @@ const NoteList = (props) => {
     );
   });
 
-  if (isLoading) {
+  if (isLoading && !props.debug) {
     return <p>Loading...</p>;
   } else
     return (
